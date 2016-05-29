@@ -23,5 +23,5 @@ deploy:
   on:
     repo: ripples-alive/electronic-wechat
     branch: production
-after_deploy:
+before_deploy:
   - ./scripts/qiniu.sh
