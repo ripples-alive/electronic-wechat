@@ -9,18 +9,19 @@ branches:
 before_script:
 - npm install
 script:
-- ./scripts/build-all.sh
-- ./scripts/tar-all.sh
+- "./scripts/build-all.sh"
+- "./scripts/tar-all.sh"
 deploy:
   provider: releases
   api_key:
-    secure: ccf52f9b241340e04d6c8d4aab5bb231eb876c2b
+    secure: Jh+BJJEHF4se+AxLDE+/MN5hFwAqhVO1Bzq489vQOGNmrdphDoli1NOMwQffFEJ+1Waam6icFQ/Wu8I535bkij5QnsIKIFCKf0mABFDPlNC9JelNwh5K9uYkqiYuEHOoDw7xDcEvqd9KaJo0F4Clyn1xgqld+o+wJELdGUFb9eWS2V5pk3KT9dcR7MFhtEaotrEGX93Ml2vMmYutSpf0NtXNyHVv7zIsh5b8q+/urU4a9VJJ6hP1AkFoj/358FMG4eQhAGVnsfnDsDJ8BuARazS05eMLIs/FLf0Jz9bhbH1MVe7NXFUXk9R+d6jL+Da15r/raQAo0eeS6dkqJlp0aKANvY3xBajdx2RZ+YQVp/6Oki4iCHJj+HcZJkwzslQmPgmQTH1eD7tfeuIOn7VVeB0KV3s/G/16RkgA07cbgA/W/IIAz7A5YDHTkIFGZgcKnwSrJemRZE/9gikwdoitExtpgLVIJMjrwdtvb967AGdjoVICIE2z0RMT32y20UbHAt3ePuItRslPTsBBSUYgVAAH3pl9adqWjT9uuru94TvT7rpZe3ZdsDmYeqNWDPsHO2UCMl13Vj96uQ95XdsOWase+8UBnHWnwm3MJVfBMvtcQM5DINsuug004jyMWBed6UoZSgjMmfwWmSA1kg3DXffoxij/5ygrkJ7Lwe0eA+c=
   file:
   - 'dist/mac-osx.tar.gz'
   - 'dist/linux-x64.tar.gz'
   - 'dist/linux-ia32.tar.gz'
   skip_cleanup: true
-  script: ./scripts/qiniu.sh
   on:
     repo: ripples-alive/electronic-wechat
     branch: production
+after_deploy:
+  - ./scripts/qiniu.sh
